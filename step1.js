@@ -1,7 +1,6 @@
 "use strict";
 
 const fsP = require("fs/promises");
-const process = require("process");
 
 const filePath = process.argv[2];
 
@@ -9,18 +8,15 @@ const filePath = process.argv[2];
  */
 async function cat(path) {
 
+  let data;
   try {
-    const data = await fsP.readFile(`${path}`, 'utf8');
-    console.log(data);
-
+    data = await fsP.readFile(`${path}`, 'utf8');
   } catch (err) {
     console.log(err);
-    process.exit(0);
+    process.exit(0); // pass 1 for errors
   }
+
+  console.log(data);
 }
 
 cat(filePath);
-
-// module.exports = {
-//   cat
-// };
